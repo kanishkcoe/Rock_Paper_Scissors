@@ -20,6 +20,7 @@ public class GameController {
     @PostMapping("game")
     public ResponseEntity<?> play(@RequestBody MoveTally move) {
         MoveTally winner = service.addMove(move);
+        System.out.println(move);
         if(winner == null) {
             return new ResponseEntity<String>("Move added to the game, wait for next player.", HttpStatus.OK);
         }

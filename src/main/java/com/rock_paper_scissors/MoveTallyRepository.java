@@ -12,7 +12,7 @@ public class MoveTallyRepository {
     private Stack<MoveTally> currentSessionMoves;
 
     public int getSize() {
-        return this.moves.size();
+        return this.currentSessionMoves.size();
     }
     public MoveTallyRepository() {
         this.moves = new Stack<>();
@@ -22,11 +22,13 @@ public class MoveTallyRepository {
     public boolean addMove(MoveTally move) {
         this.moves.push(move);
         this.currentSessionMoves.push(move);
+        System.out.println(move + " added to the tally");
         return true;
     }
 
     public MoveTally getLastMove() {
-        return  this.currentSessionMoves.pop();
+        System.out.println("currentSessionMoves = " + currentSessionMoves);
+        return  this.currentSessionMoves.peek();
     }
 
     public boolean reset() {
@@ -36,5 +38,10 @@ public class MoveTallyRepository {
 
     public Stack<MoveTally> getAllMoves() {
         return this.moves;
+    }
+
+    public MoveTally getSecondLastMove() {
+        this.currentSessionMoves.pop();
+        return this.currentSessionMoves.peek();
     }
 }
